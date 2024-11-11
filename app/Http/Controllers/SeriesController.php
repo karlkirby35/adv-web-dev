@@ -78,7 +78,7 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        $series = Series::findOrFail($id);  //Finds series by id, if not found an error 404 will appear
+        $series = Series::findOrFail($id);  //Finds series by id, if not found an error will appear
         return view('series.edit', compact('series'));  //returns view for specific series
     }
     
