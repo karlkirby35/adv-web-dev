@@ -25,7 +25,11 @@ class SeriesController extends Controller
     
     public function create()
     {
+        if (auth()->user()->role !== 'admin'){
+            return redirect()->route('series.index')->with('error','Access denied.');
+        }
         return view('series.create');
+    
     }
 
     /**

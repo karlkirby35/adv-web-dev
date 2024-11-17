@@ -3,6 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
+                
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
@@ -20,9 +21,12 @@
                         {{ __('View All Series') }}
                     </x-nav-link>
 
+                    <!-- admin user create link-->
+                    @if(auth()->user()->role === 'admin')
                     <x-nav-link :href="route('series.create')" :active="request()->routeIs('series.create')">
                         {{ __('Create New Series') }}
                     </x-nav-link>
+                    @endif
 
                 </div>
             </div>
