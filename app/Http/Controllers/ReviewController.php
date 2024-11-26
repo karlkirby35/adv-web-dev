@@ -28,7 +28,20 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:1000',
+        ]);
+
+        //creates review for user
+        $series->reviews()->create([
+            'user_id' =>  auth()->id(),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment'),
+            'series_id' => $series->id
+        ]);
+
+        return redirect()->route('series.show', $series)->with('success', 'Review added successfully');
     }
 
     /**

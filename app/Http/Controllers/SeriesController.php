@@ -72,7 +72,7 @@ class SeriesController extends Controller
 
     public function show($id)
 {
-    //$series = Series::findOrFail($id);  // Fetch the series by ID
+    $series = Series::findOrFail($id);  // Fetch the series by ID
     $series->load('reviews.user');  //each review has a user id for the reviewer
     return view('series.show', compact('series'));
 }
