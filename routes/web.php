@@ -31,6 +31,13 @@ Route::put('/series/{series}', [SeriesController::class, 'update'])->name('serie
 
 Route::delete('/series{series}', [SeriesController::class, 'destroy'])->name('series.destroy');
 
+
+//Routes for reviews
+Route::resource('reviews', ReviewController::class);
+
+//This will accept a series parameter and overwrite the usual store route
+Route::post('series/{series}/reviews', [SeriesController::class, 'store'])->name('series.store');
+
 require __DIR__.'/auth.php';
 
 
