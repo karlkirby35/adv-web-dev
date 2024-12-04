@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-//use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use App\Models\Series;
 use Carbon\Carbon;
@@ -66,5 +66,16 @@ class SeriesSeeder extends Seeder
             
             ]
         );
+
+        foreach ($series as $seriesData)
+        {
+            
+        $series = Series::create(array_merge($seriesData, ['created_at' => $currentTimeStamp, 'updated_at' => $currentTimeStamp]));
+        
+        $directors = Director::inRandomOrder()->take(2)->pluck('id');
+
+        $series->directors()->attach($directors);
+
+        }
     }
 }

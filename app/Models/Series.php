@@ -22,4 +22,9 @@ class Series extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function directors()
+    {
+        return $this->belongsToMany(Review::class);
+    }
 }
